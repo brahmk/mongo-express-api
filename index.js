@@ -33,13 +33,13 @@ app.listen(PORT, () => {
   console.log("Now listening on http://localhost:" + PORT);
 });
 
-app.get("/mongo", async (req, res)  =>  {
+app.get("/", async (req, res)  =>  {
     results =  await menudb.find({}).toArray();
     
   return res.status(200).send(results); 
 });
 
-app.post("/mongo", (req, res) => {  
+app.post("/", (req, res) => {  
   menudb.insertOne(req.body);
   return res.status(201).send('Item Added')
 });
