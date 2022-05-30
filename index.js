@@ -1,11 +1,14 @@
 const mongo = require("mongodb").MongoClient;
 const express = require("express");
 
+
+
 const app = express();
 app.use(express.json());
 
-const url =
-  "mongodb+srv://admin:Password1@cluster0.xks18.mongodb.net?retryWrites=true&w=majority";
+const url = "mongodb+srv://admin:Password1@cluster0.xks18.mongodb.net?retryWrites=true&w=majority"
+
+
 
 const options = {
   useNewUrlParser: true,
@@ -30,9 +33,10 @@ app.listen(PORT, () => {
   console.log("Now listening on http://localhost:" + PORT);
 });
 
-app.get("/mongo", (req, res) => {
-    results = menudb.find({})
-  return res.status(200).send("results"); 
+app.get("/mongo", async (req, res)  =>  {
+    results =  await menudb.find({}).toArray();
+    
+  return res.status(200).send(results); 
 });
 
 app.post("/mongo", (req, res) => {  
